@@ -19,6 +19,8 @@ University capstone project (CSIT321), University of Wollongong in Dubai, 2025/2
 - **Manual overrides.** Stop, patrol, power off, return to base and deploy to an aisle.
 - **Login lockout** after 3 failed attempts.
 
+> **Note:** NaviBot is a local simulation demo. The dashboard login is checked in the browser only, and the backend endpoints are not protected by server-side authentication. Do not expose it to the internet as is.
+
 ## Architecture
 
 ```mermaid
