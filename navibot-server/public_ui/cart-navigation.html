@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navibot - Cart Navigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .interface {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, #489DFF 0%, #1e62b3 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cart-progress {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            display: none;
+        }
+
+        .spinner {
+            width: 90px;
+            height: 90px;
+            border: 8px solid rgba(255,255,255,0.15);
+            border-top: 8px solid white;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin-bottom: 28px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        #arrivalIcon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: none;
+            animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+
+        .status-text {
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .sub-text {
+            color: rgba(255,255,255,0.85);
+            font-size: 17px;
+            max-width: 520px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            white-space: pre-line;
+        }
+
+        .route-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 18px 22px;
+            max-width: 500px;
+            width: 100%;
+            margin-bottom: 24px;
+            display: none;
+            max-height: 42vh;
+            overflow-y: auto;
+        }
+
+        .route-title {
+            color: rgba(255,255,255,0.75);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .route-stop {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+        .route-stop:last-child { border-bottom: none; }
+
+        .stop-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .stop-number.active-stop { background: white; color: #1e62b3; }
+        .stop-number.done-stop   { background: #4caf50; color: white; }
+
+        .stop-info { flex: 1; }
+
+        .stop-items {
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        .stop-items.done {
+            text-decoration: line-through;
+            opacity: 0.45;
+        }
+
+        .stop-aisle {
+            color: rgba(255,255,255,0.65);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .btn {
+            padding: 15px 38px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: none;
+        }
+        .btn:hover    { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+        .btn:active   { transform: scale(0.97); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .btn-start  { background: #4caf50; color: white; }
+        .btn-next   { background: #4caf50; color: white; }
+        .btn-cancel { background: #ff4757; color: white; }
+        .btn-retry  { background: #ffa502; color: white; }
+        .btn-home   { background: white;   color: #489DFF; }
+
+        .battery-container {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 22px;
+            border-radius: 50px;
+            z-index: 100;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .battery-icon {
+            width: 44px;
+            height: 21px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            border-radius: 5px;
+            position: relative;
+        }
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 5px;
+            width: 4px;
+            height: 8px;
+            background: white;
+            border-radius: 2px;
+        }
+        .battery-level {
+            height: 100%;
+            background: #4caf50;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        .battery-icon.low    .battery-level { background: #ff4757; }
+        .battery-icon.medium .battery-level { background: #ffa502; }
+        .battery-text { color: white; font-weight: 600; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="interface">
+
+    <div class="cart-progress" id="cartProgress">Stop 1 / 1</div>
+
+    <div id="arrivalIcon">📍</div>
+    <div class="spinner" id="mainSpinner"></div>
+
+    <h1 class="status-text" id="statusText">Preparing your route…</h1>
+    <p  class="sub-text"    id="subText">Fetching product locations, please wait.</p>
+
+    <div class="route-container" id="routeContainer">
+        <div class="route-title">Optimized Route</div>
+        <div id="routeStops"></div>
+    </div>
+
+    <div class="button-group">
+        <button id="startBtn"  class="btn btn-start"  onclick="beginNavigation()">START NAVIGATION</button>
+        <button id="nextBtn"   class="btn btn-next"   onclick="nextStop()">NEXT STOP</button>
+        <button id="cancelBtn" class="btn btn-cancel" onclick="cancelNavigation()">CANCEL</button>
+        <button id="retryBtn"  class="btn btn-retry"  onclick="retryCurrentStop()">RETRY</button>
+        <button id="homeBtn"   class="btn btn-home"   onclick="returnHome()">RETURN HOME</button>
+    </div>
+</div>
+
+<div class="battery-container">
+    <div class="battery-icon" id="batteryIcon">
+        <div class="battery-level" id="batteryLevel" style="width:100%;"></div>
+    </div>
+    <span class="battery-text" id="batteryText">100%</span>
+</div>
+
+<script>
+/* ================================================================
+   STATE
+================================================================ */
+let stops         = [];   // [{x, y, aisle, shelf, items:[…]}, …]
+let currentStop   = 0;    // index into stops[] — current or next to navigate
+let pollInterval  = null;
+let navInProgress = false;
+
+// Robot home base coordinates (will be fetched from backend)
+let HOME = { x: -12.475, y: -8.200 };
+
+/* ================================================================
+   UI HELPERS
+================================================================ */
+const $       = id => document.getElementById(id);
+const setText  = (id, t)    => $(id).textContent    = t;
+const showBtn  = id          => $(id).style.display  = 'inline-block';
+const hideBtn  = id          => $(id).style.display  = 'none';
+const showElem = (id, m='block') => $(id).style.display = m;
+const hideElem = id          => $(id).style.display  = 'none';
+
+function renderRoute() {
+    $('routeStops').innerHTML = '';
+    stops.forEach((stop, si) => {
+        const isDone   = si < currentStop;
+        const isActive = si === currentStop;
+        const numClass = isDone ? 'done-stop' : (isActive ? 'active-stop' : '');
+        const numIcon  = isDone ? '✓' : (si + 1);
+        const namesHtml = stop.items.map(it => it.name).join('<br>');
+        const aisleHtml = stop.aisle
+            ? `<div class="stop-aisle">Aisle ${stop.aisle}${stop.shelf ? `, Shelf ${stop.shelf}` : ''}</div>` 
+            : '';
+
+        const div = document.createElement('div');
+        div.className = 'route-stop';
+        div.innerHTML = `
+            <div class="stop-number ${numClass}">${numIcon}</div>
+            <div class="stop-info">
+                <div class="stop-items ${isDone ? 'done' : ''}">${namesHtml}</div>
+                ${aisleHtml}
+            </div>`;
+        $('routeStops').appendChild(div);
+    });
+}
+
+function updateProgress() {
+    const el = $('cartProgress');
+    el.style.display = 'block';
+    const display = Math.min(currentStop + 1, stops.length);
+    el.textContent = `Stop ${display} / ${stops.length}`;
+}
+
+/* ================================================================
+   FETCH PRODUCT COORDINATES FROM NEW BACKEND ENDPOINT
+================================================================ */
+async function fetchProductWithCoordinates(sku, fallbackName, fallbackPrice, fallbackImage) {
+    try {
+        const res = await fetch(`http://127.0.0.1:8000/api/products/${encodeURIComponent(sku)}/coordinates`);
+        
+        if (!res.ok) {
+            console.warn(`Coordinates not found for SKU ${sku}, status: ${res.status}`);
+            return null;
+        }
+        
+        const data = await res.json();
+        
+        console.log(`📦 Response for SKU ${sku}:`, data);
+        
+        // Direct access - the response has x and y at root level
+        return {
+            name: data.name || fallbackName,
+            sku: data.sku || sku,
+            price: fallbackPrice,
+            image_url: fallbackImage,
+            aisle: data.aisle || '',
+            shelf: data.shelf || '2',
+            x: data.x,
+            y: data.y
+        };
+        
+    } catch (err) {
+        console.error(`Failed to fetch coordinates for SKU ${sku}:`, err);
+        return null;
+    }
+}
+
+/* ================================================================
+   CLUSTER PRODUCTS BY ACTUAL DISTANCE
+================================================================ */
+const MAX_CLUSTER_DISTANCE = 1.5; // meters - items within this distance are grouped
+
+function clusterByProximity(items) {
+    if (items.length <= 1) return items.map(item => [item]);
+    
+    const clusters = [];
+    const used = new Set();
+    
+    console.log('\n=== CLUSTERING BY PROXIMITY ===');
+    console.log(`Max cluster distance: ${MAX_CLUSTER_DISTANCE}m`);
+    
+    for (let i = 0; i < items.length; i++) {
+        if (used.has(i)) continue;
+        
+        const cluster = [items[i]];
+        used.add(i);
+        const item1 = items[i];
+        
+        console.log(`\nStarting cluster with: ${item1.name} at (${item1.x?.toFixed(3)}, ${item1.y?.toFixed(3)})`);
+        
+        for (let j = i + 1; j < items.length; j++) {
+            if (used.has(j)) continue;
+            
+            const item2 = items[j];
+            const distance = Math.hypot(item2.x - item1.x, item2.y - item1.y);
+            
+            console.log(`  Checking ${item2.name}: distance = ${distance.toFixed(3)}m`);
+            
+            if (distance <= MAX_CLUSTER_DISTANCE) {
+                cluster.push(item2);
+                used.add(j);
+                console.log(`    -> ADDED to cluster (within ${MAX_CLUSTER_DISTANCE}m)`);
+            }
+        }
+        
+        clusters.push(cluster);
+        console.log(`Cluster size: ${cluster.length} items`);
+    }
+    
+    console.log(`\nTotal clusters: ${clusters.length}`);
+    return clusters;
+}
+
+/* ================================================================
+   GREEDY TSP ON CLUSTERS
+================================================================ */
+function optimizeClusterOrder(clusters) {
+    if (clusters.length <= 1) return clusters;
+    
+    console.log('\n=== TSP OPTIMIZATION ===');
+    console.log(`Starting from HOME: (${HOME.x.toFixed(3)}, ${HOME.y.toFixed(3)})`);
+    
+    const unvisited = [...clusters];
+    const ordered = [];
+    let currentPos = { x: HOME.x, y: HOME.y };
+    
+    while (unvisited.length > 0) {
+        let bestIdx = 0;
+        let bestDist = Infinity;
+        
+        unvisited.forEach((cluster, idx) => {
+            const clusterPos = { x: cluster[0].x, y: cluster[0].y };
+            const dist = Math.hypot(clusterPos.x - currentPos.x, clusterPos.y - currentPos.y);
+            
+            if (dist < bestDist) {
+                bestDist = dist;
+                bestIdx = idx;
+            }
+        });
+        
+        const chosen = unvisited.splice(bestIdx, 1)[0];
+        ordered.push(chosen);
+        currentPos = { x: chosen[0].x, y: chosen[0].y };
+        
+        const names = chosen.map(it => it.name).join(', ');
+        console.log(`Selected: ${names} at (${currentPos.x.toFixed(3)}, ${currentPos.y.toFixed(3)}) - distance: ${bestDist.toFixed(3)}m`);
+    }
+    
+    return ordered;
+}
+
+/* ================================================================
+   CREATE STOPS FROM CLUSTERS
+================================================================ */
+function createStopsFromClusters(clusters) {
+    return clusters.map((cluster, index) => {
+        const firstItem = cluster[0];
+        
+        // Calculate center of cluster for better accuracy
+        let sumX = 0, sumY = 0;
+        cluster.forEach(item => {
+            sumX += item.x;
+            sumY += item.y;
+        });
+        
+        return {
+            x: sumX / cluster.length,
+            y: sumY / cluster.length,
+            aisle: firstItem.aisle,
+            shelf: firstItem.shelf,
+            items: cluster
+        };
+    });
+}
+
+/* ================================================================
+   BUILD ROUTE
+================================================================ */
+async function buildRoute(cart) {
+    setText('statusText', 'Fetching product locations…');
+    setText('subText', `Getting coordinates for ${cart.length} item(s)…`);
+
+    const enriched = [];
+
+    // Fetch coordinates for each cart item
+    for (let i = 0; i < cart.length; i++) {
+        const cartItem = cart[i];
+        setText('subText', `Loading: ${cartItem.name} (${i + 1}/${cart.length})...`);
+        
+        const product = await fetchProductWithCoordinates(
+            cartItem.sku, 
+            cartItem.name, 
+            cartItem.price, 
+            cartItem.image_url
+        );
+        
+        if (product) {
+            enriched.push(product);
+            console.log(`✅ ${product.name}: aisle=${product.aisle}, shelf=${product.shelf}, coords=(${product.x?.toFixed(3)}, ${product.y?.toFixed(3)})`);
+        } else {
+            console.warn(`❌ Could not fetch coordinates for "${cartItem.name}" - skipping`);
+            // Skip products without coordinates
+        }
+    }
+
+    if (enriched.length === 0) {
+        throw new Error('No products with valid coordinates found');
+    }
+
+    console.log('\n=== ALL PRODUCTS WITH COORDINATES ===');
+    enriched.forEach(item => {
+        console.log(`${item.name.padEnd(25)} | Aisle: ${(item.aisle || 'N/A').padEnd(6)} | Shelf: ${item.shelf || 'N/A'} | (${item.x?.toFixed(3)}, ${item.y?.toFixed(3)})`);
+    });
+
+    // Cluster by actual proximity
+    const clusters = clusterByProximity(enriched);
+
+    // Optimize cluster order using TSP
+    const orderedClusters = optimizeClusterOrder(clusters);
+
+    // Create stops from ordered clusters
+    stops = createStopsFromClusters(orderedClusters);
+    currentStop = 0;
+
+    console.log('\n=== FINAL STOPS ===');
+    stops.forEach((stop, i) => {
+        const names = stop.items.map(it => it.name).join(', ');
+        console.log(`Stop ${i+1}: ${names}`);
+        console.log(`  Location: (${stop.x.toFixed(3)}, ${stop.y.toFixed(3)})`);
+    });
+}
+
+/* ================================================================
+   PLAN SCREEN
+================================================================ */
+function showPlanScreen() {
+    hideElem('mainSpinner');
+
+    const stopCount = stops.length;
+    const itemCount = stops.reduce((n, s) => n + s.items.length, 0);
+
+    setText('statusText', `Route Ready — ${stopCount} Stop${stopCount !== 1 ? 's' : ''}`);
+    setText('subText',
+        `${itemCount} item${itemCount !== 1 ? 's' : ''} grouped into ${stopCount} stop${stopCount !== 1 ? 's' : ''}.\nTap START to begin.`);
+
+    showElem('routeContainer');
+    renderRoute();
+    updateProgress();
+    showBtn('startBtn');
+    showBtn('cancelBtn');
+}
+
+/* ================================================================
+   NAVIGATION — step-by-step (SIMPLE WORKING VERSION)
+================================================================ */
+function beginNavigation() {
+    hideBtn('startBtn');
+    currentStop = 0;
+    navigateToCurrentStop();
+}
+
+function navigateToCurrentStop() {
+    if (navInProgress) return;
+    navInProgress = true;
+
+    const stop       = stops[currentStop];
+    const targetName = stop.items[0].name;
+    const allNames   = stop.items.map(it => it.name).join(', ');
+
+    renderRoute();
+    updateProgress();
+
+    showElem('mainSpinner');
+    hideElem('arrivalIcon');
+    setText('statusText', `Navigating to Stop ${currentStop + 1} of ${stops.length}…`);
+    setText('subText',    `Heading to: ${allNames}`);
+
+    hideBtn('nextBtn');
+    hideBtn('retryBtn');
+    hideBtn('homeBtn');
+    hideBtn('startBtn');
+    showBtn('cancelBtn');
+
+    console.log(`📡 POST /api/navigate  product_name="${targetName}"`);
+
+    fetch('http://127.0.0.1:8000/api/navigate', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ product_name: targetName, source: 'user_ui' }),
+    })
+    .then(async res => {
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(json.detail || 'Navigation request failed');
+        console.log('✅ Backend accepted navigation to', targetName);
+        startPolling();
+    })
+    .catch(err => {
+        console.error('Navigation error:', err);
+        navInProgress = false;
+        showFailure(err.message || 'Could not start navigation');
+    });
+}
+
+
+
+/* ================================================================
+   POLLING - SIMPLE VERSION
+================================================================ */
+function startPolling() {
+    if (pollInterval) clearInterval(pollInterval);
+    pollInterval = setInterval(pollStatus, 2000);
+}
+
+async function pollStatus() {
+    try {
+        const res  = await fetch('http://127.0.0.1:8000/api/navigation/status');
+        const data = await res.json();
+        if (!data.ok) return;
+
+        switch (data.state) {
+            case 'success':
+                clearInterval(pollInterval); 
+                pollInterval = null;
+                navInProgress = false;
+                showArrival();
+                break;
+            case 'failed':
+                clearInterval(pollInterval); 
+                pollInterval = null;
+                navInProgress = false;
+                showFailure(data.navigation?.error_message || 'Navigation failed');
+                break;
+            case 'overridden':
+            case 'cancelled_by_user':
+                clearInterval(pollInterval); 
+                pollInterval = null;
+                navInProgress = false;
+                showFailure('Navigation was overridden or cancelled');
+                break;
+            // 'in_progress' / 'received' → keep polling
+        }
+    } catch (err) {
+        console.warn('Poll error:', err);
+    }
+}
+
+/* ================================================================
+   ARRIVAL
+   IMPORTANT: currentStop is incremented HERE (after arrival confirmed)
+================================================================ */
+function showArrival() {
+    hideElem('mainSpinner');
+    showElem('arrivalIcon');
+
+    const arrivedStop = stops[currentStop];
+    const allNames    = arrivedStop.items.map(it => it.name).join(' & ');
+    const isLast      = currentStop === stops.length - 1;
+
+    // Advance index so renderRoute() shows this stop as ✓
+    currentStop++;
+    renderRoute();
+    updateProgress();
+
+    setText('statusText', '📍 Arrived!');
+
+    if (isLast) {
+        setText('subText', `Please collect: ${allNames}\n\nAll stops complete! 🎉`);
+        localStorage.removeItem('cart');
+        localStorage.removeItem('navigationCart');
+        hideBtn('cancelBtn');
+        hideBtn('nextBtn');
+        showBtn('homeBtn');
+    } else {
+        const nextStop  = stops[currentStop];
+        const nextNames = nextStop.items.map(it => it.name).join(', ');
+        setText('subText',
+            `Please collect: ${allNames}\n\nNext: ${nextNames}` +
+            (nextStop.aisle ? ` (Aisle ${nextStop.aisle}${nextStop.shelf ? `, Shelf ${nextStop.shelf}` : ''})` : '') +
+            `\nTap NEXT STOP when ready.`);
+        hideBtn('homeBtn');
+        showBtn('nextBtn');
+        showBtn('cancelBtn');
+    }
+}
+
+function nextStop() {
+    // currentStop already points to the next stop (incremented in showArrival)
+    hideBtn('nextBtn');
+    navigateToCurrentStop();
+}
+
+/* ================================================================
+   FAILURE
+================================================================ */
+function showFailure(msg) {
+    hideElem('mainSpinner');
+    hideElem('arrivalIcon');
+    setText('statusText', '⚠ Navigation Failed');
+    setText('subText',    msg || 'Something went wrong. Retry or cancel.');
+    // currentStop is NOT incremented on failure — retry goes to same stop
+    showBtn('retryBtn');
+    showBtn('cancelBtn');
+    hideBtn('nextBtn');
+    hideBtn('homeBtn');
+}
+
+function retryCurrentStop() {
+    hideBtn('retryBtn');
+    navigateToCurrentStop();
+}
+
+/* ================================================================
+   CANCEL
+================================================================ */
+function cancelNavigation() {
+    if (pollInterval) { clearInterval(pollInterval); pollInterval = null; }
+    navInProgress = false;
+
+    const btn = $('cancelBtn');
+    btn.disabled    = true;
+    btn.textContent = 'CANCELLING…';
+
+    fetch('http://127.0.0.1:8000/api/user/override/cancel_navigation', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ source: 'user_ui' }),
+    })
+    .finally(() => {
+        localStorage.removeItem('cart');
+        localStorage.removeItem('navigationCart');
+        window.location.href = '/index';
+    });
+}
+
+/* ================================================================
+   RETURN HOME
+================================================================ */
+function returnHome() {
+    // Clear any ongoing navigation
+    if (pollInterval) {
+        clearInterval(pollInterval);
+        pollInterval = null;
+    }
+    
+    // Clear cart data
+    localStorage.removeItem('cart');
+    localStorage.removeItem('navigationCart');
+    
+    // Redirect to home page
+    window.location.href = '/index';
+}
+
+/* ================================================================
+   BATTERY
+================================================================ */
+let batteryLevel;
+
+function initBattery() {
+    const saved = localStorage.getItem('globalBatteryLevel');
+    const ts    = localStorage.getItem('batteryLastUpdate');
+    if (saved && ts) {
+        const diff = (Date.now() - parseInt(ts)) / 1000;
+        batteryLevel = Math.max(0, parseFloat(saved) - diff * 0.1);
+    } else {
+        batteryLevel = 100;
+    }
+    if (batteryLevel <= 0) batteryLevel = 100;
+    renderBattery();
+}
+
+function renderBattery() {
+    if (typeof batteryLevel !== 'number' || isNaN(batteryLevel)) batteryLevel = 100;
+    const lvl  = $('batteryLevel');
+    const txt  = $('batteryText');
+    const icon = $('batteryIcon');
+    if (lvl)  lvl.style.width = Math.floor(batteryLevel) + '%';
+    if (txt)  txt.textContent = Math.floor(batteryLevel) + '%';
+    if (icon) {
+        icon.classList.remove('low', 'medium');
+        if      (batteryLevel < 20) icon.classList.add('low');
+        else if (batteryLevel < 50) icon.classList.add('medium');
+    }
+}
+
+function tickBattery() {
+    batteryLevel = Math.max(0, batteryLevel - 0.1);
+    localStorage.setItem('globalBatteryLevel', batteryLevel.toString());
+    localStorage.setItem('batteryLastUpdate',  Date.now().toString());
+    renderBattery();
+    if (batteryLevel <= 20) {
+        batteryLevel = 100;
+        localStorage.setItem('globalBatteryLevel', '100');
+        localStorage.setItem('batteryLastUpdate',  Date.now().toString());
+        renderBattery();
+    }
+    setTimeout(tickBattery, 1000);
+}
+
+/* ================================================================
+   INIT
+================================================================ */
+window.onload = async function () {
+    initBattery();
+    setTimeout(() => {
+        if (typeof batteryLevel === 'number' && !isNaN(batteryLevel)) tickBattery();
+    }, 1000);
+
+    const raw = localStorage.getItem('navigationCart');
+    if (!raw) { window.location.href = '/locate-product'; return; }
+
+    let cart;
+    try   { cart = JSON.parse(raw); }
+    catch { window.location.href = '/locate-product'; return; }
+
+    if (!Array.isArray(cart) || cart.length === 0) {
+        window.location.href = '/locate-product'; return;
+    }
+    if (cart.length > 5) cart = cart.slice(0, 5);
+
+    try {
+        await buildRoute(cart);
+        showPlanScreen();
+    } catch (err) {
+        console.error('Route build failed:', err);
+        setText('statusText', 'Error Building Route');
+        setText('subText',    err.message || 'Could not fetch product locations.');
+        hideElem('mainSpinner');
+        showBtn('cancelBtn');
+    }
+};
+</script>
+</body>
+</html>

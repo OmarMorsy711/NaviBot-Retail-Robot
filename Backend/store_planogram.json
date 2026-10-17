@@ -1,0 +1,768 @@
+{
+  "store_meta": {
+    "store_id": "SPERO_01",
+    "version": "1.0"
+  },
+  "products": [
+    {
+      "sku": "1001",
+      "name": "Rice Krispies",
+      "location": { "x": -7.325, "y": 3.975, "z": 0.950 },
+      "aisle": "A2b",
+      "shelf": "S2",
+      "price": "AED 24"
+    },
+    {
+      "sku": "1002",
+      "name": "Cheerios",
+      "location": { "x": -7.725, "y": 3.975, "z": 0.450 },
+      "aisle": "A2b",
+      "shelf": "S3",
+      "price": "AED 20"
+    },
+    {
+      "sku": "1003",
+      "name": "Cornflakes",
+      "location": { "x": -9.350, "y": 3.975, "z": 0.950 },
+      "aisle": "A2b",
+      "shelf": "S5",
+      "price": "AED 21"
+    },
+    {
+      "sku": "1005",
+      "name": "Lucky Charms",
+      "location": { "x": -9.350, "y": 3.975, "z": 0.450 },
+      "aisle": "A2b",
+      "shelf": "S6",
+      "price": "AED 26"
+    },
+    {
+      "sku": "1006",
+      "name": "Fruit Loops",
+      "location": { "x": -11.000, "y": 3.975, "z": 0.950 },
+      "aisle": "A2b",
+      "shelf": "S8",
+      "price": "AED 27"
+    },
+    {
+      "sku": "1007",
+      "name": "Trix",
+      "location": { "x": -11.000, "y": 3.975, "z": 0.450 },
+      "aisle": "A2b",
+      "shelf": "S9",
+      "price": "AED 23"
+    },
+    {
+      "sku": "1008",
+      "name": "Cinnamon Toast Crunch",
+      "location": { "x": -12.675, "y": 3.975, "z": 0.450 },
+      "aisle": "A2b",
+      "shelf": "S12",
+      "price": "AED 22"
+    },
+    {
+      "sku": "1009",
+      "name": "Heinz Baked Beans",
+      "location": { "x": -7.725, "y": -1.800, "z": 1.450 },
+      "aisle": "A1a",
+      "shelf": "S10",
+      "price": "AED 9"
+    },
+    {
+      "sku": "1010",
+      "name": "Sweet Corn",
+      "location": { "x": -9.350, "y": -1.800, "z": 1.450 },
+      "aisle": "A1a",
+      "shelf": "S7",
+      "price": "AED 11"
+    },
+    {
+      "sku": "1011",
+      "name": "Tuna Chunks",
+      "location": { "x": -11.000, "y": -1.800, "z": 1.450 },
+      "aisle": "A1a",
+      "shelf": "S4",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1012",
+      "name": "Tomato Paste",
+      "location": { "x": -12.675, "y": -1.800, "z": 1.450 },
+      "aisle": "A1a",
+      "shelf": "S1",
+      "price": "AED 17"
+    },
+    {
+      "sku": "1013",
+      "name": "Chopped Tomatoes",
+      "location": { "x": -7.725, "y": -1.800, "z": 0.950 },
+      "aisle": "A1a",
+      "shelf": "S11",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1014",
+      "name": "Kidney Beans",
+      "location": { "x": -9.350, "y": -1.800, "z": 0.950 },
+      "aisle": "A1a",
+      "shelf": "S8",
+      "price": "AED 10"
+    },
+    {
+      "sku": "1015",
+      "name": "Chickpeas",
+      "location": { "x": -11.000, "y": -1.800, "z": 0.950 },
+      "aisle": "A1a",
+      "shelf": "S5",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1016",
+      "name": "Green Peas",
+      "location": { "x": -12.675, "y": -1.800, "z": 0.950 },
+      "aisle": "A1a",
+      "shelf": "S2",
+      "price": "AED 16"
+    },
+    {
+      "sku": "1017",
+      "name": "Mushroom Slices Tin",
+      "location": { "x": -7.725, "y": -1.800, "z": 0.450 },
+      "aisle": "A1a",
+      "shelf": "S12",
+      "price": "AED 9"
+    },
+    {
+      "sku": "1018",
+      "name": "Black Olives",
+      "location": { "x": -9.350, "y": -1.800, "z": 0.450 },
+      "aisle": "A1a",
+      "shelf": "S9",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1019",
+      "name": "Corned Beef",
+      "location": { "x": -11.000, "y": -1.800, "z": 0.450 },
+      "aisle": "A1a",
+      "shelf": "S6",
+      "price": "AED 17"
+    },
+    {
+      "sku": "1020",
+      "name": "Lentil Soup Can",
+      "location": { "x": -12.675, "y": -1.800, "z": 0.450 },
+      "aisle": "A1a",
+      "shelf": "S3",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1021",
+      "name": "Spaghetti Pasta",
+      "location": { "x": -7.725, "y": -0.775, "z": 0.950 },
+      "aisle": "A1b",
+      "shelf": "S2",
+      "price": "AED 9"
+    },
+    {
+      "sku": "1022",
+      "name": "Macaroni Pasta",
+      "location": { "x": -9.350, "y": -0.775, "z": 0.950 },
+      "aisle": "A1b",
+      "shelf": "S5",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1023",
+      "name": "Lasagna Sheet",
+      "location": { "x": -11.000, "y": -0.775, "z": 0.950 },
+      "aisle": "A1b",
+      "shelf": "S8",
+      "price": "AED 12"
+    },
+    {
+      "sku": "1024",
+      "name": "Beef Stock Cube",
+      "location": { "x": -12.675, "y": -0.775, "z": 0.950 },
+      "aisle": "A1b",
+      "shelf": "S11",
+      "price": "AED 20"
+    },
+    {
+      "sku": "1025",
+      "name": "Chicken Noodle Soup",
+      "location": { "x": -7.725, "y": -0.775, "z": 0.450 },
+      "aisle": "A1b",
+      "shelf": "S3",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1026",
+      "name": "Mushroom Soup",
+      "location": { "x": -9.350, "y": -0.775, "z": 0.450 },
+      "aisle": "A1b",
+      "shelf": "S6",
+      "price": "AED 11"
+    },
+    {
+      "sku": "1027",
+      "name": "Instant Noodles",
+      "location": { "x": -11.000, "y": -0.775, "z": 0.450 },
+      "aisle": "A1b",
+      "shelf": "S9",
+      "price": "AED 10"
+    },
+    {
+      "sku": "1028",
+      "name": "Vegetable Stock Cube",
+      "location": { "x": -12.675, "y": -0.775, "z": 0.450 },
+      "aisle": "A1b",
+      "shelf": "S12",
+      "price": "AED 20"
+    },
+    {
+      "sku": "1029",
+      "name": "Maple Syrup",
+      "location": { "x": -12.675, "y": 2.800, "z": 0.950 },
+      "aisle": "A2a",
+      "shelf": "S2",
+      "price": "AED 21"
+    },
+    {
+      "sku": "1030",
+      "name": "Chocolate Cereal Balls",
+      "location": { "x": -11.000, "y": 2.800, "z": 1.450 },
+      "aisle": "A2a",
+      "shelf": "S4",
+      "price": "AED 22"
+    },
+    {
+      "sku": "1031",
+      "name": "Bran Flakes",
+      "location": { "x": -9.350, "y": 2.800, "z": 1.450 },
+      "aisle": "A2a",
+      "shelf": "S7",
+      "price": "AED 15"
+    },
+    {
+      "sku": "1032",
+      "name": "Honey Oats Cereal",
+      "location": { "x": -7.725, "y": 2.800, "z": 1.450 },
+      "aisle": "A2a",
+      "shelf": "S10",
+      "price": "AED 16"
+    },
+    {
+      "sku": "1033",
+      "name": "Honey Bottle",
+      "location": { "x": -7.725, "y": 2.800, "z": 0.950 },
+      "aisle": "A2a",
+      "shelf": "S11",
+      "price": "AED 14"
+    },
+    {
+      "sku": "1034",
+      "name": "Granola Honey",
+      "location": { "x": -9.350, "y": 2.800, "z": 0.950 },
+      "aisle": "A2a",
+      "shelf": "S8",
+      "price": "AED 20"
+    },
+    {
+      "sku": "1035",
+      "name": "Instant Oatmeal",
+      "location": { "x": -11.000, "y": 2.800, "z": 0.950 },
+      "aisle": "A2a",
+      "shelf": "S5",
+      "price": "AED 14"
+    },
+    {
+      "sku": "1036",
+      "name": "Strawberry Jam",
+      "location": { "x": -7.725, "y": 2.800, "z": 0.450 },
+      "aisle": "A2a",
+      "shelf": "S12",
+      "price": "AED 15"
+    },
+    {
+      "sku": "1037",
+      "name": "Waffle Mix",
+      "location": { "x": -9.350, "y": 2.800, "z": 0.450 },
+      "aisle": "A2a",
+      "shelf": "S9",
+      "price": "AED 14"
+    },
+    {
+      "sku": "1038",
+      "name": "Pancake Mix",
+      "location": { "x": -11.000, "y": 2.800, "z": 0.450 },
+      "aisle": "A2a",
+      "shelf": "S6",
+      "price": "AED 16"
+    },
+    {
+      "sku": "1042",
+      "name": "Lemonade",
+      "location": { "x": -0.675, "y": -0.575, "z": 1.450 },
+      "aisle": "C1a",
+      "shelf": "S10",
+      "price": "AED 10"
+    },
+    {
+      "sku": "1043",
+      "name": "Mango Juice",
+      "location": { "x": -0.675, "y": 1.075, "z": 1.450 },
+      "aisle": "C1a",
+      "shelf": "S7",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1044",
+      "name": "Orange Juice",
+      "location": { "x": -0.675, "y": 2.750, "z": 1.450 },
+      "aisle": "C1a",
+      "shelf": "S4",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1045",
+      "name": "Apple Juice",
+      "location": { "x": -0.675, "y": 4.575, "z": 1.450 },
+      "aisle": "C1a",
+      "shelf": "S1",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1046",
+      "name": "Pepsi",
+      "location": { "x": -0.675, "y": -0.575, "z": 0.950 },
+      "aisle": "C1a",
+      "shelf": "S11",
+      "price": "AED 3"
+    },
+    {
+      "sku": "1047",
+      "name": "Mountain Dew",
+      "location": { "x": -0.675, "y": 1.075, "z": 0.950 },
+      "aisle": "C1a",
+      "shelf": "S8",
+      "price": "AED 4"
+    },
+    {
+      "sku": "1048",
+      "name": "Miranda",
+      "location": { "x": -0.675, "y": 2.750, "z": 0.950 },
+      "aisle": "C1a",
+      "shelf": "S5",
+      "price": "AED 3"
+    },
+    {
+      "sku": "1049",
+      "name": "Sprite",
+      "location": { "x": -0.675, "y": 4.575, "z": 0.950 },
+      "aisle": "C1a",
+      "shelf": "S2",
+      "price": "AED 3"
+    },
+    {
+      "sku": "1050",
+      "name": "Water 500ml",
+      "location": { "x": -0.675, "y": -0.575, "z": 0.450 },
+      "aisle": "C1a",
+      "shelf": "S12",
+      "price": "AED 2"
+    },
+    {
+      "sku": "1051",
+      "name": "Water 1.5L",
+      "location": { "x": -0.675, "y": 1.075, "z": 0.450 },
+      "aisle": "C1a",
+      "shelf": "S9",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1052",
+      "name": "Sparkling Water",
+      "location": { "x": -0.675, "y": 2.750, "z": 0.450 },
+      "aisle": "C1a",
+      "shelf": "S6",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1053",
+      "name": "Coca Cola",
+      "location": { "x": -0.675, "y": 4.575, "z": 0.450 },
+      "aisle": "C1a",
+      "shelf": "S3",
+      "price": "AED 4"
+    },
+    {
+      "sku": "1054",
+      "name": "Redbull",
+      "location": { "x": 0.275, "y": -0.575, "z": 1.450 },
+      "aisle": "C1b",
+      "shelf": "S1",
+      "price": "AED 9"
+    },
+    {
+      "sku": "1055",
+      "name": "BoomBoom",
+      "location": { "x": 0.275, "y": 1.075, "z": 1.450 },
+      "aisle": "C1b",
+      "shelf": "S4",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1056",
+      "name": "Monster",
+      "location": { "x": 0.275, "y": 2.750, "z": 1.450 },
+      "aisle": "C1b",
+      "shelf": "S7",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1057",
+      "name": "Iced Tea Lemon",
+      "location": { "x": 0.275, "y": 4.575, "z": 1.450 },
+      "aisle": "C1b",
+      "shelf": "S10",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1058",
+      "name": "Chocolate Milk",
+      "location": { "x": 0.275, "y": -0.575, "z": 0.950 },
+      "aisle": "C1b",
+      "shelf": "S2",
+      "price": "AED 4"
+    },
+    {
+      "sku": "1059",
+      "name": "Strawberry Milk",
+      "location": { "x": 0.275, "y": 1.075, "z": 0.950 },
+      "aisle": "C1b",
+      "shelf": "S5",
+      "price": "AED 5"
+    },
+    {
+      "sku": "1060",
+      "name": "Milk",
+      "location": { "x": 0.275, "y": 2.750, "z": 0.950 },
+      "aisle": "C1b",
+      "shelf": "S8",
+      "price": "AED 12"
+    },
+    {
+      "sku": "1061",
+      "name": "Protein Shake",
+      "location": { "x": 0.275, "y": -0.575, "z": 0.450 },
+      "aisle": "C1b",
+      "shelf": "S3",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1062",
+      "name": "Coffee",
+      "location": { "x": 0.275, "y": 1.075, "z": 0.450 },
+      "aisle": "C1b",
+      "shelf": "S6",
+      "price": "AED 14"
+    },
+    {
+      "sku": "1063",
+      "name": "Iced Tea Peach",
+      "location": { "x": 0.275, "y": 2.750, "z": 0.450 },
+      "aisle": "C1b",
+      "shelf": "S9",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1064",
+      "name": "Potato Chips Salted",
+      "location": { "x": 7.725, "y": -1.800, "z": 1.450 },
+      "aisle": "B1a",
+      "shelf": "S1",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1065",
+      "name": "Potato Chips Cheese",
+      "location": { "x": 9.350, "y": -1.800, "z": 1.450 },
+      "aisle": "B1a",
+      "shelf": "S4",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1066",
+      "name": "Tortilla Chips",
+      "location": { "x": 11.000, "y": -1.800, "z": 1.450 },
+      "aisle": "B1a",
+      "shelf": "S7",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1067",
+      "name": "Popcorn Butter",
+      "location": { "x": 12.675, "y": -1.800, "z": 1.450 },
+      "aisle": "B1a",
+      "shelf": "S10",
+      "price": "AED 15"
+    },
+    {
+      "sku": "1068",
+      "name": "Popcorn Caramel",
+      "location": { "x": 7.725, "y": -1.800, "z": 0.950 },
+      "aisle": "B1a",
+      "shelf": "S2",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1069",
+      "name": "Pretzel Sticks",
+      "location": { "x": 9.350, "y": -1.800, "z": 0.950 },
+      "aisle": "B1a",
+      "shelf": "S5",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1070",
+      "name": "Salted Peanuts",
+      "location": { "x": 11.000, "y": -1.800, "z": 0.950 },
+      "aisle": "B1a",
+      "shelf": "S8",
+      "price": "AED 9"
+    },
+    {
+      "sku": "1071",
+      "name": "Mixed Nuts",
+      "location": { "x": 12.675, "y": -1.800, "z": 0.950 },
+      "aisle": "B1a",
+      "shelf": "S11",
+      "price": "AED 12"
+    },
+    {
+      "sku": "1072",
+      "name": "Chocolate Bar Milk",
+      "location": { "x": 7.725, "y": -1.800, "z": 0.450 },
+      "aisle": "B1a",
+      "shelf": "S3",
+      "price": "AED 11"
+    },
+    {
+      "sku": "1073",
+      "name": "Chocolate Bar Dark",
+      "location": { "x": 9.350, "y": -1.800, "z": 0.450 },
+      "aisle": "B1a",
+      "shelf": "S6",
+      "price": "AED 11"
+    },
+    {
+      "sku": "1074",
+      "name": "Chocolate Bar White",
+      "location": { "x": 11.000, "y": -1.800, "z": 0.450 },
+      "aisle": "B1a",
+      "shelf": "S9",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1075",
+      "name": "Protein Snack Bar",
+      "location": { "x": 12.675, "y": -1.800, "z": 0.450 },
+      "aisle": "B1a",
+      "shelf": "S12",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1076",
+      "name": "Cookies Oatmeal",
+      "location": { "x": 7.725, "y": -0.775, "z": 1.450 },
+      "aisle": "B1b",
+      "shelf": "S10",
+      "price": "AED 12"
+    },
+    {
+      "sku": "1077",
+      "name": "Candy Gummies",
+      "location": { "x": 9.350, "y": -0.775, "z": 1.450 },
+      "aisle": "B1b",
+      "shelf": "S7",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1078",
+      "name": "Chewing Gum Mint",
+      "location": { "x": 11.000, "y": -0.775, "z": 1.450 },
+      "aisle": "B1b",
+      "shelf": "S4",
+      "price": "AED 3"
+    },
+    {
+      "sku": "1079",
+      "name": "Chewing Gum Fruit",
+      "location": { "x": 12.675, "y": -0.775, "z": 1.450 },
+      "aisle": "B1b",
+      "shelf": "S1",
+      "price": "AED 3"
+    },
+    {
+      "sku": "1080",
+      "name": "Wafer Biscuits",
+      "location": { "x": 7.725, "y": -0.775, "z": 0.950 },
+      "aisle": "B1b",
+      "shelf": "S11",
+      "price": "AED 6"
+    },
+    {
+      "sku": "1081",
+      "name": "Cream Biscuits Vanilla",
+      "location": { "x": 9.350, "y": -0.775, "z": 0.950 },
+      "aisle": "B1b",
+      "shelf": "S8",
+      "price": "AED 9"
+    },
+    {
+      "sku": "1082",
+      "name": "Cream Biscuits Chocolate",
+      "location": { "x": 11.000, "y": -0.775, "z": 0.950 },
+      "aisle": "B1b",
+      "shelf": "S5",
+      "price": "AED 10"
+    },
+    {
+      "sku": "1083",
+      "name": "Cookies Chocolate Chip",
+      "location": { "x": 12.675, "y": -0.775, "z": 0.950 },
+      "aisle": "B1b",
+      "shelf": "S2",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1084",
+      "name": "Lollipops",
+      "location": { "x": 7.725, "y": -0.775, "z": 0.450 },
+      "aisle": "B1b",
+      "shelf": "S12",
+      "price": "AED 12"
+    },
+    {
+      "sku": "1085",
+      "name": "Marshmallows",
+      "location": { "x": 9.350, "y": -0.775, "z": 0.450 },
+      "aisle": "B1b",
+      "shelf": "S9",
+      "price": "AED 9"
+    },
+    {
+      "sku": "1086",
+      "name": "Trail Mix",
+      "location": { "x": 11.000, "y": -0.775, "z": 0.450 },
+      "aisle": "B1b",
+      "shelf": "S6",
+      "price": "AED 15"
+    },
+    {
+      "sku": "1087",
+      "name": "Rice Crackers",
+      "location": { "x": 12.675, "y": -0.775, "z": 0.450 },
+      "aisle": "B1b",
+      "shelf": "S3",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1088",
+      "name": "Dishwashing Liquid",
+      "location": { "x": 7.725, "y": 2.800, "z": 1.450 },
+      "aisle": "B2a",
+      "shelf": "S1",
+      "price": "AED 11"
+    },
+    {
+      "sku": "1089",
+      "name": "Kitchen Sponge Pack",
+      "location": { "x": 9.350, "y": 2.800, "z": 1.450 },
+      "aisle": "B2a",
+      "shelf": "S4",
+      "price": "AED 11"
+    },
+    {
+      "sku": "1090",
+      "name": "Paper Towels",
+      "location": { "x": 11.000, "y": 2.800, "z": 1.450 },
+      "aisle": "B2a",
+      "shelf": "S7",
+      "price": "AED 7"
+    },
+    {
+      "sku": "1091",
+      "name": "Toilet Paper Pack",
+      "location": { "x": 12.675, "y": 2.800, "z": 1.450 },
+      "aisle": "B2a",
+      "shelf": "S10",
+      "price": "AED 18"
+    },
+    {
+      "sku": "1092",
+      "name": "Facial Tissues",
+      "location": { "x": 7.725, "y": 2.800, "z": 0.950 },
+      "aisle": "B2a",
+      "shelf": "S2",
+      "price": "AED 20"
+    },
+    {
+      "sku": "1093",
+      "name": "Laundry Detergent Powder",
+      "location": { "x": 9.350, "y": 2.800, "z": 0.950 },
+      "aisle": "B2a",
+      "shelf": "S5",
+      "price": "AED 14"
+    },
+    {
+      "sku": "1094",
+      "name": "Laundry Detergent Liquid",
+      "location": { "x": 11.000, "y": 2.800, "z": 0.950 },
+      "aisle": "B2a",
+      "shelf": "S8",
+      "price": "AED 16"
+    },
+    {
+      "sku": "1095",
+      "name": "Fabric Softener",
+      "location": { "x": 12.675, "y": 2.800, "z": 0.950 },
+      "aisle": "B2a",
+      "shelf": "S11",
+      "price": "AED 20"
+    },
+    {
+      "sku": "1096",
+      "name": "Glass Cleaner",
+      "location": { "x": 7.725, "y": 2.800, "z": 0.450 },
+      "aisle": "B2a",
+      "shelf": "S3",
+      "price": "AED 10"
+    },
+    {
+      "sku": "1097",
+      "name": "Floor Cleaner",
+      "location": { "x": 9.350, "y": 2.800, "z": 0.450 },
+      "aisle": "B2a",
+      "shelf": "S6",
+      "price": "AED 15"
+    },
+    {
+      "sku": "1098",
+      "name": "Hand Soap Liquid",
+      "location": { "x": 11.000, "y": 2.800, "z": 0.450 },
+      "aisle": "B2a",
+      "shelf": "S9",
+      "price": "AED 8"
+    },
+    {
+      "sku": "1099",
+      "name": "Hand Sanitizer",
+      "location": { "x": 12.675, "y": 2.800, "z": 0.450 },
+      "aisle": "B2a",
+      "shelf": "S12",
+      "price": "AED 9"
+    }
+  ]
+}

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navibot - Price Check</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background: #e0e7f1;
+        }
+
+        /* ===== BACKGROUND ===== */
+        .interface {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(135deg, #489DFF 0%, #1e62b3 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== ORBS ===== */
+        .orb {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 1;
+        }
+        .orb-1 {
+            width: 40vw; height: 40vw;
+            top: -10%; left: -10%;
+            animation: floatSlow 15s infinite alternate;
+        }
+        .orb-2 {
+            width: 30vw; height: 30vw;
+            bottom: -5%; right: -5%;
+            animation: floatSlow 12s infinite alternate-reverse;
+        }
+        @keyframes floatSlow {
+            0%   { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 60px) scale(1.1); }
+        }
+
+        /* ===== TOP BAR — absolutely positioned so it doesn't affect card centring ===== */
+        .top-bar {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .back-button {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .back-button:hover {
+            transform: scale(1.1) rotate(-5deg);
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-left: 18px;
+            flex: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* ===== LANGUAGE DROPDOWN ===== */
+        .language-container { position: relative; }
+
+        .language-selector {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 10px 18px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .language-selector:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 52px;
+            right: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            overflow: hidden;
+            width: 175px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.3s ease;
+            z-index: 30;
+        }
+        .language-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .language-option {
+            padding: 12px 18px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+        }
+        .language-option:hover           { background: #489DFF; color: white; }
+        .language-option.active          { background: #f0f7ff; color: #489DFF; font-weight: 600; }
+        .language-option.active:hover    { background: #489DFF; color: white; }
+        .language-option span            { font-size: 17px; }
+
+        /* ===== STATUS TEXT (loading / error) ===== */
+        #statusText {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SINGLE PRODUCT CARD ===== */
+        .price-card {
+            background: white;
+            border-radius: 40px;
+            padding: 40px;
+            width: 90%;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.6s ease;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-section {
+            background: #f4f7fb;
+            border-radius: 24px;
+            padding: 24px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: transform 0.3s ease;
+        }
+        .image-section:hover { transform: scale(1.02); }
+
+        .product-img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .image-section:hover .product-img { transform: scale(1.06); }
+
+        .item-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .price-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aab4c8;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+
+        .item-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            font-weight: 800;
+            color: #489DFF;
+            line-height: 1.1;
+        }
+        .item-price::before {
+            content: 'AED ';
+            font-size: 20px;
+            font-weight: 600;
+            color: #aab4c8;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        /* aisle + shelf badges — mirrors product-details.html */
+        .location-row {
+            display: flex;
+            gap: 14px;
+            width: 100%;
+            margin-top: 24px;
+        }
+
+        .location-badge {
+            flex: 1;
+            background: #f0f7ff;
+            border: 2px solid #ddeeff;
+            padding: 16px 10px;
+            border-radius: 18px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .location-badge:hover {
+            transform: translateY(-3px);
+            border-color: #489DFF;
+            box-shadow: 0 8px 18px rgba(72,157,255,0.12);
+        }
+        .loc-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7ba6d9;
+            margin-bottom: 6px;
+        }
+        .loc-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #1e62b3;
+        }
+
+        /* ===== MULTI-PRODUCT GRID ===== */
+        .scroll-container {
+            width: 100%;
+            max-width: 1100px;
+            max-height: calc(100vh - 180px);   /* leaves room for top-bar + scan-again btn */
+            overflow-y: auto;
+            padding: 10px 4px 100px;           /* bottom pad clears the fixed button */
+            z-index: 10;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.3) transparent;
+        }
+        .scroll-container::-webkit-scrollbar       { width: 6px; }
+        .scroll-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 8px; }
+        .scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.35); border-radius: 8px; }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            animation: fadeInUp 0.6s ease;
+        }
+        @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px)  { .products-grid { grid-template-columns: 1fr; } }
+
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 22px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.18);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            border-radius: 14px;
+            margin-bottom: 14px;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image { transform: scale(1.04); }
+
+        .product-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .product-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: #489DFF;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+
+        /* ===== SCAN AGAIN BUTTON (fixed, centred at bottom) ===== */
+        .scan-again-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #489DFF;
+            border: none;
+            padding: 15px 42px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
+            white-space: nowrap;
+        }
+        .scan-again-btn:hover {
+            background: #f0f4ff;
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.25);
+        }
+        .scan-again-btn:active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== BATTERY ===== */
+        .battery-container {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 22px;
+            border-radius: 50px;
+            z-index: 100;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.8s ease;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        .battery-container:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+            border-color: white;
+        }
+        .battery-icon {
+            width: 45px;
+            height: 22px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            border-radius: 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -6px; top: 5px;
+            width: 4px; height: 8px;
+            background: white;
+            border-radius: 2px;
+        }
+        .battery-container:hover .battery-icon::after { background: #4caf50; }
+        .battery-level {
+            height: 100%;
+            background: #4caf50;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        .battery-icon.low    .battery-level { background: #ff4757; }
+        .battery-icon.medium .battery-level { background: #ffa502; }
+        .battery-text { color: white; font-weight: 600; font-size: 14px; }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: white;
+            color: #333;
+            padding: 14px 28px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            font-weight: 600;
+            z-index: 2000;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 4px solid #489DFF;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="interface">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- TOP BAR: back button + title + language — absolutely positioned so card stays truly centred -->
+    <div class="top-bar">
+        <a href="/index" class="back-button" onclick="clearScanData()">←</a>
+        <span class="page-title" id="pageTitle">Price Check</span>
+
+        <div class="language-container">
+            <div class="language-selector" onclick="toggleLanguageDropdown()">
+                🌐 <span id="selectedLanguage">English</span> ▼
+            </div>
+            <div class="language-dropdown" id="languageDropdown">
+                <div class="language-option active" onclick="changeLanguage('en','English',event)"><span>🇬🇧</span> English</div>
+                <div class="language-option"        onclick="changeLanguage('ar','العربية',event)"><span>🇸🇦</span> العربية</div>
+                <div class="language-option"        onclick="changeLanguage('fr','Français',event)"><span>🇫🇷</span> Français</div>
+                <div class="language-option"        onclick="changeLanguage('hi','हिन्दी',event)"><span>🇮🇳</span> हिन्दी</div>
+                <div class="language-option"        onclick="changeLanguage('ur','اردو',event)"><span>🇵🇰</span> اردو</div>
+                <div class="language-option"        onclick="changeLanguage('zh','中文',event)"><span>🇨🇳</span> 中文</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATUS (loading / error state) -->
+    <div id="statusText">Loading product info…</div>
+
+    <!-- SINGLE PRODUCT CARD -->
+    <div id="priceCard" class="price-card" style="display:none;">
+        <div class="image-section">
+            <img id="itemImg" src="" alt="Product" class="product-img">
+        </div>
+        <h2 id="itemName" class="item-name">---</h2>
+
+        <div class="price-label">Current Price</div>
+        <div id="itemPrice" class="item-price">0.00</div>
+
+        <!-- Aisle + Shelf badges — shown only when data available -->
+        <div class="location-row" id="locationRow" style="display:none;">
+            <div class="location-badge">
+                <div class="loc-label">Aisle</div>
+                <div class="loc-value" id="itemAisle">--</div>
+            </div>
+            <div class="location-badge">
+                <div class="loc-label">Shelf</div>
+                <div class="loc-value" id="itemShelf">--</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MULTI-PRODUCT GRID (category scan) -->
+    <div class="scroll-container" id="scrollContainer" style="display:none;">
+        <div id="productsGrid" class="products-grid"></div>
+    </div>
+</div>
+
+<!-- SCAN AGAIN — fixed so it never moves regardless of content height -->
+<button class="scan-again-btn" onclick="scanAgain()">SCAN ANOTHER ITEM</button>
+
+<!-- BATTERY -->
+<div class="battery-container">
+    <div class="battery-icon" id="batteryIcon">
+        <div class="battery-level" id="batteryLevel" style="width:100%;"></div>
+    </div>
+    <span class="battery-text" id="batteryText">100%</span>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+<script src="scanned-product.js"></script>
+</body>
+</html>

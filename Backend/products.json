@@ -1,0 +1,596 @@
+[
+  {
+    "sku": "1001",
+    "name": "Rice Krispies",
+    "price": 24,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1002",
+    "name": "Cheerios",
+    "price": 20,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1003",
+    "name": "Cornflakes",
+    "price": 21,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1005",
+    "name": "Lucky Charms",
+    "price": 26,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1006",
+    "name": "Fruit Loops",
+    "price": 27,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1007",
+    "name": "Trix",
+    "price": 23,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1008",
+    "name": "Cinnamon Toast Crunch",
+    "price": 22,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1004",
+    "name": "Fritos",
+    "price": 9,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1009",
+    "name": "Heinz Backed Beans",
+    "price": 9,
+    "category": "Canned"
+  },
+  {
+    "sku": "1010",
+    "name": "Sweet Corn",
+    "price": 11,
+    "category": "Canned"
+  },
+  {
+    "sku": "1011",
+    "name": "Tuna Chunks",
+    "price": 7,
+    "category": "Canned"
+  },
+  {
+    "sku": "1012",
+    "name": "Tomato Paste",
+    "price": 7,
+    "category": "Canned"
+  },
+  {
+    "sku": "1013",
+    "name": "Chopped Tomatoes",
+    "price": 6,
+    "category": "Canned"
+  },
+  {
+    "sku": "1014",
+    "name": "Kidney Beans",
+    "price": 10,
+    "category": "Canned"
+  },
+  {
+    "sku": "1015",
+    "name": "Chickpeas",
+    "price": 7,
+    "category": "Canned"
+  },
+  {
+    "sku": "1016",
+    "name": "Green Peas",
+    "price": 6,
+    "category": "Canned"
+  },
+  {
+    "sku": "1017",
+    "name": "Mushroom Slices Tin",
+    "price": 9,
+    "category": "Canned"
+  },
+  {
+    "sku": "1018",
+    "name": "Black Olives",
+    "price": 8,
+    "category": "Canned"
+  },
+  {
+    "sku": "1019",
+    "name": "Corned Beef",
+    "price": 17,
+    "category": "Canned"
+  },
+  {
+    "sku": "1020",
+    "name": "Lentil Soup Can",
+    "price": 6,
+    "category": "Canned"
+  },
+  {
+    "sku": "1021",
+    "name": "Spaghetti Pasta",
+    "price": 9,
+    "category": "Pasta"
+  },
+  {
+    "sku": "1022",
+    "name": "Macaroni Pasta",
+    "price": 8,
+    "category": "Pasta"
+  },
+  {
+    "sku": "1023",
+    "name": "Lasagna ",
+    "price": 12,
+    "category": "Pasta"
+  },
+  {
+    "sku": "1024",
+    "name": "Beef Stock Cube",
+    "price": 20,
+    "category": "Seasoning"
+  },
+  {
+    "sku": "1025",
+    "name": "Chicken Noodle Soup",
+    "price": 6,
+    "category": "Canned"
+  },
+  {
+    "sku": "1026",
+    "name": "Mushroom Soup",
+    "price": 11,
+    "category": "Canned"
+  },
+  {
+    "sku": "1027",
+    "name": "Instant Noodles",
+    "price": 10,
+    "category": "Noodles"
+  },
+  {
+    "sku": "1028",
+    "name": "Vegetable Stock Cube",
+    "price": 20,
+    "category": "Seasoning"
+  },
+  {
+    "sku": "1029",
+    "name": "Maple Syrup",
+    "price": 21,
+    "category": "Breakfast"
+  },
+  {
+    "sku": "1030",
+    "name": "Chocolate Cereal Balls",
+    "price": 22,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1031",
+    "name": "Bran Flakes",
+    "price": 15,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1032",
+    "name": "Honey Oats Cereal",
+    "price": 16,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1033",
+    "name": "Honey Bottle",
+    "price": 14,
+    "category": "Breakfast"
+  },
+  {
+    "sku": "1034",
+    "name": "Granola Honey",
+    "price": 20,
+    "category": "Cereal"
+  },
+  {
+    "sku": "1035",
+    "name": "Instant Oatmeal",
+    "price": 14,
+    "category": "Breakfast"
+  },
+  {
+    "sku": "1036",
+    "name": "Strawberry Jam",
+    "price": 15,
+    "category": "Breakfast"
+  },
+  {
+    "sku": "1037",
+    "name": "Waffle Mix",
+    "price": 14,
+    "category": "Baking"
+  },
+  {
+    "sku": "1038",
+    "name": "Pancake Mix",
+    "price": 16,
+    "category": "Baking"
+  },
+  {
+    "sku": "1039",
+    "name": "Takis",
+    "price": 6,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1040",
+    "name": "Ruffles",
+    "price": 12,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1041",
+    "name": "Tostitos",
+    "price": 14,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1042",
+    "name": "Lemonade",
+    "price": 10,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1043",
+    "name": "Mango Juice",
+    "price": 6,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1044",
+    "name": "Orange Juice",
+    "price": 7,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1045",
+    "name": "Apple Juice",
+    "price": 7,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1046",
+    "name": "Pepsi",
+    "price": 3,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1047",
+    "name": "Mountain Dew",
+    "price": 4,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1048",
+    "name": "Miranda",
+    "price": 3,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1049",
+    "name": "Sprite",
+    "price": 3,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1050",
+    "name": "Water 500ml",
+    "price": 2,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1051",
+    "name": "Water 1.5L",
+    "price": 6,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1052",
+    "name": "Sparkling Water",
+    "price": 8,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1053",
+    "name": "Coca Cola",
+    "price": 4,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1054",
+    "name": "Redbull",
+    "price": 9,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1055",
+    "name": "BoomBoom",
+    "price": 6,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1056",
+    "name": "Monster",
+    "price": 6,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1057",
+    "name": "Iced Tea Lemon",
+    "price": 6,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1058",
+    "name": "Chocolate Milk",
+    "price": 4,
+    "category": "Dairy"
+  },
+  {
+    "sku": "1059",
+    "name": "Strawberry Milk",
+    "price": 5,
+    "category": "Dairy"
+  },
+  {
+    "sku": "1060",
+    "name": "Milk",
+    "price": 12,
+    "category": "Dairy"
+  },
+  {
+    "sku": "1061",
+    "name": "Protein Shake",
+    "price": 7,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1062",
+    "name": "Coffee",
+    "price": 14,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1063",
+    "name": "Iced Tea Peach",
+    "price": 6,
+    "category": "Beverages"
+  },
+  {
+    "sku": "1064",
+    "name": "Potato Chips Salted",
+    "price": 8,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1065",
+    "name": "Potato Chips Cheese",
+    "price": 6,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1066",
+    "name": "Tortilla Chips",
+    "price": 7,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1067",
+    "name": "Popcorn Butter",
+    "price": 15,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1068",
+    "name": "Popcorn Caramel",
+    "price": 8,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1069",
+    "name": "Pretzel Sticks",
+    "price": 8,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1070",
+    "name": "Salted Peanuts",
+    "price": 9,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1071",
+    "name": "Mixed Nuts",
+    "price": 12,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1072",
+    "name": "Chocolate Bar Milk",
+    "price": 11,
+    "category": "Candy"
+  },
+  {
+    "sku": "1073",
+    "name": "Chocolate Bar Dark",
+    "price": 11,
+    "category": "Candy"
+  },
+  {
+    "sku": "1074",
+    "name": "Chocolate Bar White",
+    "price": 7,
+    "category": "Candy"
+  },
+  {
+    "sku": "1075",
+    "name": "Protein Snack Bar",
+    "price": 7,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1076",
+    "name": "Cookies Oatmeal",
+    "price": 12,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1077",
+    "name": "Candy Gummies",
+    "price": 8,
+    "category": "Candy"
+  },
+  {
+    "sku": "1078",
+    "name": "Chewing Gum Mint",
+    "price": 3,
+    "category": "Candy"
+  },
+  {
+    "sku": "1079",
+    "name": "Chewing Gum Fruit",
+    "price": 3,
+    "category": "Candy"
+  },
+  {
+    "sku": "1080",
+    "name": "Wafer Biscuits",
+    "price": 6,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1081",
+    "name": "Cream Biscuits Vanilla",
+    "price": 9,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1082",
+    "name": "Cream Biscuits Chocolate",
+    "price": 10,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1083",
+    "name": "Cookies Chocolate Chip",
+    "price": 7,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1084",
+    "name": "Lollipops",
+    "price": 12,
+    "category": "Candy"
+  },
+  {
+    "sku": "1085",
+    "name": "Marshmallows",
+    "price": 9,
+    "category": "Candy"
+  },
+  {
+    "sku": "1086",
+    "name": "Trail Mix",
+    "price": 15,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1087",
+    "name": "Rice Crackers",
+    "price": 8,
+    "category": "Snacks"
+  },
+  {
+    "sku": "1088",
+    "name": "Dishwashing Liquid",
+    "price": 11,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1089",
+    "name": "Kitchen Sponge Pack",
+    "price": 11,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1090",
+    "name": "Paper Towels",
+    "price": 7,
+    "category": "Household"
+  },
+  {
+    "sku": "1091",
+    "name": "Toilet Paper Pack",
+    "price": 18,
+    "category": "Household"
+  },
+  {
+    "sku": "1092",
+    "name": "Facial Tissues",
+    "price": 20,
+    "category": "Household"
+  },
+  {
+    "sku": "1093",
+    "name": "Laundry Detergent Powder",
+    "price": 14,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1094",
+    "name": "Laundry Detergent Liquid",
+    "price": 16,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1095",
+    "name": "Fabric Softener",
+    "price": 20,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1096",
+    "name": "Glass Cleaner",
+    "price": 10,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1097",
+    "name": "Floor Cleaner",
+    "price": 15,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1098",
+    "name": "Hand Soap Liquid",
+    "price": 8,
+    "category": "Cleaning"
+  },
+  {
+    "sku": "1099",
+    "name": "Hand Sanitizer",
+    "price": 9,
+    "category": "Cleaning"
+  }
+]

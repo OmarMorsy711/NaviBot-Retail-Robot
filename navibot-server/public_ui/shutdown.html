@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navibot - Shutdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: black;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .shutdown-screen {
+            width: 100%;
+            height: 100%;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="shutdown-screen"></div>
+    <script>
+        // Keep polling screen state to know when to come back
+        let pollInterval;
+        
+        async function checkScreenState() {
+            try {
+                const response = await fetch('/api/customer/screen-state');
+                const data = await response.json();
+                
+                if (data.ok) {
+                    // If mode is not 'black' anymore, return to index
+                    if (data.mode !== 'black') {
+                        window.location.href = '/index';
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error('Screen state check error:', error);
+            }
+        }
+        
+        // Poll every 2 seconds to check if robot is back online
+        pollInterval = setInterval(checkScreenState, 2000);
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', function() {
+            if (pollInterval) clearInterval(pollInterval);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navibot - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ui/styles.css">
+</head>
+<body>
+    <div class="interface">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        
+        <!-- Language Dropdown -->
+        <div class="language-container">
+            <div class="language-selector" onclick="toggleLanguageDropdown()">
+                🌐
+                <span id="selectedLanguage">English</span>
+                ▼
+            </div>
+            <div class="language-dropdown" id="languageDropdown">
+                <div class="language-option active" onclick="changeLanguage('en', 'English', event)">
+                    <span>🇬🇧</span> English
+                </div>
+                <div class="language-option" onclick="changeLanguage('ar', 'العربية', event)">
+                    <span>🇸🇦</span> العربية
+                </div>
+                <div class="language-option" onclick="changeLanguage('fr', 'Français', event)">
+                    <span>🇫🇷</span> Français
+                </div>
+                <div class="language-option" onclick="changeLanguage('hi', 'हिन्दी', event)">
+                    <span>🇮🇳</span> हिन्दी
+                </div>
+                <div class="language-option" onclick="changeLanguage('ur', 'اردو', event)">
+                    <span>🇵🇰</span> اردو
+                </div>
+                <div class="language-option" onclick="changeLanguage('zh', '中文', event)">
+                    <span>🇨🇳</span> 中文
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero">
+            <h1 class="logo">Navibot</h1>
+            <p class="tagline" id="tagline">Your personal automated shopping assistant</p>
+        </div>
+        
+        <div class="menu-grid">
+            <a href="/locate-product" class="menu-card">
+                <div class="icon-circle">📍</div>
+                <div class="card-title" id="locateTitle">Locate</div>
+                <div class="card-desc" id="locateDesc">Find items by name and I'll take you there</div>
+            </a>
+            <a href="/scan-product" class="menu-card">
+                <div class="icon-circle">👁️</div>
+                <div class="card-title" id="scanTitle">Scan</div>
+                <div class="card-desc" id="scanDesc">Show me an item to check price or location</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Battery Indicator -->
+    <div class="battery-container">
+        <div class="battery-icon" id="batteryIcon">
+            <div class="battery-level" id="batteryLevel" style="width: 100%;"></div>
+        </div>
+        <span class="battery-text" id="batteryText">100%</span>
+    </div>
+
+    <script src="/ui/script.js"></script>
+</body>
+</html>

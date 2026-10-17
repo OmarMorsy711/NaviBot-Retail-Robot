@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navibot - Scan Product</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="interface">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        
+        <a href="/index" class="back-button" title="Back">←</a>
+
+        <div class="vision-container">
+            <h1 class="instruction">Align product in frame</h1>
+            
+            <div class="camera-view">
+                <!-- Stream from Python OpenCV server -->
+                <img id="cameraFeed" src="" alt="Camera Feed">
+                <div class="scan-overlay">
+                    <div class="scan-line"></div>
+                </div>
+                <!-- Scanning message -->
+                <div class="scanning-message" id="scanningMessage">
+                    Starting camera...
+                </div>
+            </div>
+        </div>
+
+        <div id="loading">
+            <div class="spinner"></div>
+            <p id="loadingText">PRODUCT DETECTED! REDIRECTING...</p>
+        </div>
+    </div>
+
+    <!-- Battery Indicator -->
+    <div class="battery-container">
+        <div class="battery-icon" id="batteryIcon">
+            <div class="battery-level" id="batteryLevel" style="width: 100%;"></div>
+        </div>
+        <span class="battery-text" id="batteryText">100%</span>
+    </div>
+
+    <!-- Global Script (battery, language, etc.) -->
+    <script src="script.js"></script>
+    
+    <!-- Page-specific Script (scanning functionality) -->
+    <script src="scan-product.js"></script>
+</body>
+</html>

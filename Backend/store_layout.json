@@ -1,0 +1,131 @@
+    {
+  "robot_base": {
+    "id": "Home_Base",
+    "description": "Robots charging and idle position",
+    "x": -12.475,
+    "y": -8.200
+  },
+  
+  "static_obstacles": [
+    {
+      "id": "Aisle_A1_Shelf",
+      "description": "First left shelf",
+      "corners": [
+        { "x": -6.500, "y": -2.075 },
+        { "x": -14.500, "y": -2.075 },
+        { "x": -14.500, "y": -0.575 },
+        { "x": -6.500, "y": -0.575 }
+      ]
+    },
+    {
+      "id": "Aisle_A2_Shelf",
+      "description": "Cereal shelf",
+      "corners": [
+        { "x": -6.500, "y": 2.575 },
+        { "x": -14.500, "y": 2.575 },
+        { "x": -14.500, "y": 4.075 },
+        { "x": -6.500, "y": 4.075 }
+      ]
+    },
+    {
+      "id": "Aisle_A3_Shelf",
+      "description": "Third left shelf",
+      "corners": [
+        { "x": -6.500, "y": 6.575 },
+        { "x": -14.500, "y": 6.575 },
+        { "x": -14.500, "y": 8.075 },
+        { "x": -6.500, "y": 8.075 }
+      ]
+    },
+    {
+      "id": "Aisle_A4_Shelf",
+      "description": "Fourth left shelf",
+      "corners": [
+        { "x": -6.500, "y": 10.575 },
+        { "x": -14.500, "y": 10.575 },
+        { "x": -14.500, "y": 12.075 },
+        { "x": -6.500, "y": 12.075 }
+      ]
+    },
+    {
+      "id": "Aisle_A5_Shelf",
+      "description": "Fifth left shelf",
+      "corners": [
+        { "x": -6.500, "y": 14.575 },
+        { "x": -14.500, "y": 14.575 },
+        { "x": -14.500, "y": 16.075 },
+        { "x": -6.500, "y": 16.075 }
+      ]
+    },
+    {
+      "id": "Aisle_B1_Shelf",
+      "description": "First right shelf",
+      "corners": [
+        { "x": 6.100, "y": -0.575 },
+        { "x": 14.100, "y": -0.575 },
+        { "x": 14.100, "y": -2.075 },
+        { "x": 6.100, "y": -2.075 }
+      ]
+    },
+    {
+      "id": "Aisle_B2_Shelf",
+      "description": "Second right shelf",
+      "corners": [
+        { "x": 6.100, "y": 4.075 },
+        { "x": 14.100, "y": 4.075 },
+        { "x": 14.100, "y": 2.575 },
+        { "x": 6.100, "y": 2.575 }
+      ]
+    },
+    {
+      "id": "Aisle_B3_Shelf",
+      "description": "Third right shelf",
+      "corners": [
+        { "x": 6.100, "y": 8.075 },
+        { "x": 14.100, "y": 8.075 },
+        { "x": 14.100, "y": 6.575 },
+        { "x": 6.100, "y": 6.575 }
+      ]
+    },
+    {
+      "id": "Aisle_B4_Shelf",
+      "description": "Fourth right shelf",
+      "corners": [
+        { "x": 6.100, "y": 12.075 },
+        { "x": 14.100, "y": 12.075 },
+        { "x": 14.100, "y": 10.575 },
+        { "x": 6.100, "y": 10.575 }
+      ]
+    },
+    {
+      "id": "Aisle_B5_Shelf",
+      "description": "Fifth right shelf",
+      "corners": [
+        { "x": 6.100, "y": 16.075 },
+        { "x": 14.100, "y": 16.075 },
+        { "x": 14.100, "y": 14.575 },
+        { "x": 6.100, "y": 14.575 }
+      ]
+    },
+    {
+      "id": "Aisle_C1_Shelf",
+      "description": "First middle shelf",
+      "corners": [
+        { "x": 0.550, "y": -2.000 },
+        { "x": -0.950, "y": -2.000 },
+        { "x": -0.950, "y": 6.000 },
+        { "x": 0.550, "y": 6.000 }
+      ]
+    },
+    {
+      "id": "Aisle_C2_Shelf",
+      "description": "Second middle shelf",
+      "corners": [
+        { "x": 0.550, "y": 8.000 },
+        { "x": -0.950, "y": 8.000 },
+        { "x": -0.950, "y": 16.000 },
+        { "x": 0.550, "y": 16.000 }
+      ]
+    }
+  ]
+}
